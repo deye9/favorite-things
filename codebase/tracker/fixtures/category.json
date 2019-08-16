@@ -1,0 +1,22 @@
+[{
+        "model": "tracker.Category",
+        "pk": 1,
+        "fields": {
+            "name": "Person"
+        }
+    },
+    {
+        "model": "tracker.Category",
+        "pk": 2,
+        "fields": {
+            "name": "Place"
+        }
+    },
+    {
+        "model": "tracker.Category",
+        "pk": 3,
+        "fields": {
+            "name": "Food"
+        }
+    }
+]
