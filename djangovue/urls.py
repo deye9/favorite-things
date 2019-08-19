@@ -1,5 +1,5 @@
 from django.urls import path
-from tracker import views
+from backend import views
 
 urlpatterns = [
     path('api/categories', views.CategoryView.as_view()),
@@ -10,4 +10,7 @@ urlpatterns = [
 
     path('api/items', views.TrackerView.as_view()),
     path('api/items/<int:pk>', views.TrackerView.as_view()),
+
+    path('api/logs', views.AuditLogView.as_view()),
+    path('api/logs/<int:pk>', views.AuditLogView.as_view()),
 ]

@@ -1,6 +1,12 @@
 from django.db import models
 
 
+class TrackerManager(models.Manager):
+    def get_queryset(self):
+        queryset = super(TrackerManager, self).get_queryset()
+        return queryset.order_by('id')
+
+
 class AuditLog(models.Model):
     model = models.CharField(max_length=30, blank=True)
     event = models.CharField(max_length=30)
@@ -30,6 +36,8 @@ class Metadata(models.Model):
 
 
 class Tracker(models.Model):
+    objects = TrackerManager()
+
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=300, blank=True, null=True)
     ranking = models.IntegerField()

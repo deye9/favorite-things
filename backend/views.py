@@ -1,5 +1,5 @@
-from tracker.models import Category, Metadata, Tracker, AuditLog
-from tracker.serializers import CategorySerializer, MetadataSerializer, TrackerSerializer, AuditLogSerializer
+from backend.models import Category, Metadata, Tracker, AuditLog
+from backend.serializers import CategorySerializer, MetadataSerializer, TrackerSerializer, AuditLogSerializer
 from django.http import Http404
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
@@ -56,7 +56,8 @@ class CategoryView(APIView):
             serializer.save()
 
             # create an audit log record
-            self.auditlog.writeLog("Category", "Insert", serializer.data['id'], request, serializer.data)
+            self.auditlog.writeLog(
+                "Category", "Insert", serializer.data['id'], request, serializer.data)
             return Response({"status": "success", "category": serializer.data}, status=status.HTTP_201_CREATED)
         return Response({"status": "error", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -68,8 +69,9 @@ class CategoryView(APIView):
             serializer.save()
 
             # create an audit log record
-            self.auditlog.writeLog("Category", "Update", pk, request, CategorySerializer(saved_category).data)
-            return Response({"status": "success", "Category": serializer.data}, status=status.HTTP_200_OK)
+            self.auditlog.writeLog(
+                "Category", "Update", pk, request, CategorySerializer(saved_category).data)
+            return Response({"status": "success", "category": serializer.data}, status=status.HTTP_200_OK)
         return Response({"status": "error", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
@@ -84,7 +86,7 @@ class CategoryView(APIView):
 
 class MetadataView(APIView):
     auditlog = AuditLogView()
-    
+
     def get(self, request, pk=None):
         if pk:
             metadata = get_object_or_404(Metadata.objects.all(), pk=pk)
@@ -103,7 +105,8 @@ class MetadataView(APIView):
             serializer.save()
 
             # create an audit log record
-            self.auditlog.writeLog("Metadata", "Insert", serializer.data['id'], request, serializer.data)
+            self.auditlog.writeLog(
+                "Metadata", "Insert", serializer.data['id'], request, serializer.data)
             return Response({"status": "success", "metadata": serializer.data}, status=status.HTTP_201_CREATED)
         return Response({"status": "error", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -115,7 +118,8 @@ class MetadataView(APIView):
             serializer.save()
 
             # create an audit log record
-            self.auditlog.writeLog("Metadata", "Update", pk, request, MetadataSerializer(saved_metadata).data)
+            self.auditlog.writeLog(
+                "Metadata", "Update", pk, request, MetadataSerializer(saved_metadata).data)
             return Response({"status": "success", "metadata": serializer.data}, status=status.HTTP_200_OK)
         return Response({"status": "error", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -150,7 +154,8 @@ class TrackerView(APIView):
             serializer.save()
 
             # create an audit log record
-            self.auditlog.writeLog("Tracker", "Insert", serializer.data['id'], request, serializer.data)
+            self.auditlog.writeLog(
+                "Tracker", "Insert", serializer.data['id'], request, serializer.data)
             return Response({"status": "success", "items": serializer.data}, status=status.HTTP_201_CREATED)
         return Response({"status": "error", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -162,8 +167,9 @@ class TrackerView(APIView):
             serializer.save()
 
             # create an audit log record
-            self.auditlog.writeLog("Tracker", "Update", pk, request, TrackerSerializer(saved_tracker).data)
-            return Response({"status": "success", "Tracker": serializer.data}, status=status.HTTP_200_OK)
+            self.auditlog.writeLog(
+                "Tracker", "Update", pk, request, TrackerSerializer(saved_tracker).data)
+            return Response({"status": "success", "items": serializer.data}, status=status.HTTP_200_OK)
         return Response({"status": "error", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tracker.models import AuditLog, Category, Metadata, Tracker
+from backend.models import AuditLog, Category, Metadata, Tracker
 
 
 class AuditLogSerializer(serializers.ModelSerializer):

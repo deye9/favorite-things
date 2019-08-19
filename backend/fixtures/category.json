@@ -1,19 +1,19 @@
 [{
-        "model": "tracker.Category",
+        "model": "backend.Category",
         "pk": 1,
         "fields": {
             "name": "Person"
         }
     },
     {
-        "model": "tracker.Category",
+        "model": "backend.Category",
         "pk": 2,
         "fields": {
             "name": "Place"
         }
     },
     {
-        "model": "tracker.Category",
+        "model": "backend.Category",
         "pk": 3,
         "fields": {
             "name": "Food"
