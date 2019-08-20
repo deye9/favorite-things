@@ -1,7 +1,14 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <br />
+    <router-view>
+      <router-link v-bind:to="'/'">Items</router-link>
+      <router-link v-bind:to="'/logs'">Logs</router-link>
+      <router-link v-bind:to="'/metadata'">Metadata</router-link>
+      <router-link v-bind:to="'/category'">New Category</router-link>
+      <router-link v-bind:to="'/categories'">Categories</router-link>
+      <router-link v-bind:to="'/edit_category'">Edit Category</router-link>
+    </router-view>
   </div>
 </template>
 

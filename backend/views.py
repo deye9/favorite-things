@@ -150,6 +150,7 @@ class TrackerView(APIView):
 
         # Create a tracked item from the above data
         serializer = TrackerSerializer(data=category)
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
 

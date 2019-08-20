@@ -1,0 +1,24 @@
+{
+    "name": "Adegbenga Adeye",
+    "email": "adegbenga.adeye@outlook.com",
+    "stacks": [
+        "C#",
+        "Python",
+        "Django",
+        "PHP",
+        "Vuejs",
+        "Nodejs",
+        "Scala",
+        "Laravel",
+        "Phalcon",
+        "Adonis",
+        "Entity Framework"
+    ],
+    "databases": [
+        "MsSQL",
+        "MySQL",
+        "Postgres",
+        "RethinkDB",
+        "Hana"
+    ]
+}
