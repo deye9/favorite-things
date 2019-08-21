@@ -6,17 +6,23 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime
+from django.http import JsonResponse
 
 
 class AuditLogView(APIView):
-    def get(self, request, pk=None):
-        if pk:
-            auditlog = get_object_or_404(AuditLog.objects.all(), pk=pk)
-            serializer = AuditLogSerializer(auditlog)
-            return Response({"category": serializer.data})
-        auditlogs = AuditLog.objects.all()
-        serializer = AuditLogSerializer(auditlogs, many=True)
-        return Response({"categories": serializer.data})
+    def get(self, request):
+        db_event = self.request.query_params.get('event')
+        db_recordid = self.request.query_params.get('record_id')
+
+        if db_event is None and db_recordid is None:
+            auditlogs = AuditLog.objects.all()
+            serializer = AuditLogSerializer(auditlogs, many=True)
+            return Response({"logs": serializer.data})
+
+        queryset = AuditLog.objects.filter(
+            model=db_event, record_id=db_recordid).values()
+            
+        return JsonResponse({"logs": list(queryset)})
 
     def writeLog(self, model, event, pk, request=None, previousData=None):
         log = AuditLog()

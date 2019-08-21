@@ -1,170 +1,93 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+    <div class="container">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th nowrap> # </th>
+            <th nowrap> Model </th>
+            <th nowrap> Event </th>
+            <th nowrap> Record ID </th>
+            <th nowrap> Old Values </th>
+            <th nowrap> New Values </th>
+            <th nowrap> URL </th>
+            <th nowrap> IP Address </th>
+            <th nowrap> Date Created </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr :id="'row' + row.id" v-for="(row, index) in this.logs" v-bind:key="row.id">
+            <td>{{++index}}</td>
+            <td>{{row.model}}</td>
+            <td>{{row.event}}</td>
+            <td>{{row.record_id}}</td>
+            <td>{{row.old_values}}</td>
+            <td>{{row.new_values}}</td>
+            <td>{{row.url}}</td>
+            <td>{{row.ip_address}}</td>
+            <td>{{row.created_date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-
-  #app .title {
-    margin-bottom: 30px;
-  }
-
-  #app .items-per-page {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    color: #337ab7;
-  }
-
-  #app .items-per-page label {
-    margin: 0 15px;
-  }
-
-  /* Datatable CSS */
-  .v-datatable-light .header-item {
-    cursor: pointer;
-    color: #337ab7;
-    transition: color 0.15s ease-in-out;
-  }
-
-  .v-datatable-light .header-item:hover {
-    color: #ed9b19;
-  }
-
-  .v-datatable-light .header-item.no-sortable{
-    cursor: default;
-  }
-  .v-datatable-light .header-item.no-sortable:hover {
-    color: #337ab7;
-  }
-
-  .v-datatable-light .header-item .th-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    font-weight: bold;
-  }
-
-  .v-datatable-light .header-item .th-wrapper.checkboxes {
-    justify-content: center;
-  }
-
-  .v-datatable-light .header-item .th-wrapper .arrows-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-    justify-content: space-between;
-  }
-
-  .v-datatable-light .header-item .th-wrapper .arrows-wrapper.centralized {
-    justify-content: center;
-  }
-
-  .v-datatable-light .arrow {
-    transition: color 0.15s ease-in-out;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-  }
-
-  .v-datatable-light .arrow.up {
-    border-bottom: 8px solid #337ab7;
-  }
-
-  .v-datatable-light .arrow.up:hover {
-    border-bottom: 8px solid #ed9b19;
-  }
-
-  .v-datatable-light .arrow.down {
-    border-top: 8px solid #337ab7;
-  }
-
-  .v-datatable-light .arrow.down:hover {
-    border-top: 8px solid #ed9b19;
-  }
-
-  .v-datatable-light .footer {
-    display: flex;
-    justify-content: space-between;
-    width: 500px;
-  }
-  /* End Datatable CSS */
-
-  /* Pagination CSS */
-  .v-datatable-light-pagination {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      margin: 0;
-      padding: 0;
-      width: 300px;
-      height: 30px;
-    }
-
-    .v-datatable-light-pagination .pagination-item {
-      width: 30px;
-      margin-right: 5px;
-      font-size: 16px;
-      transition: color 0.15s ease-in-out;
-    }
-
-    .v-datatable-light-pagination .pagination-item.selected {
-      color: #ed9b19;
-    }
-
-    .v-datatable-light-pagination .pagination-item .page-btn {
-      background-color: transparent;
-      outline: none;
-      border: none;
-      color: #337ab7;
-      transition: color 0.15s ease-in-out;
-    }
-
-    .v-datatable-light-pagination .pagination-item .page-btn:hover {
-      color: #ed9b19;
-    }
-
-    .v-datatable-light-pagination .pagination-item .page-btn:disabled{
-      cursor: not-allowed;
-      box-shadow: none;
-      opacity: .65;
-    }
-    /* END PAGINATION CSS */
-
-    /* ITEMS PER PAGE DROPDOWN CSS */
-    .item-per-page-dropdown {
-      background-color: transparent;
-      min-height: 30px;
-      border: 1px solid #337ab7;
-      border-radius: 5px;
-      color: #337ab7;
-    }
-    .item-per-page-dropdown:hover {
-      cursor: pointer;
-    }
-    /* END ITEMS PER PAGE DROPDOWN CSS */
-</style>
-
 <script>
+import {APIService} from '../APIService'
+const apiService = new APIService()
+
 export default {
   name: 'Logs',
-  data () {
-    return {
-      msg: 'View Logs'
+  data: () => ({
+    logs: [],
+    msg: 'Log'
+  }),
+  mounted () {
+    this.getLogs()
+  },
+  methods: {
+    getLogs () {
+      apiService.getData('logs' + window.location.search).then((data) => {
+        this.logs = data.logs
+        console.log(this.logs)
+        this.msg = `Viewing '${this.logs[0].model}' Log Records`
+      })
     }
   }
 }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1,
+h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+table caption {
+    line-height: 0;
+    text-align: left;
+}
+
+table caption span {
+    position: relative;
+    left: 4px;
+    top: 14px;
+}
+
+.captionRow th {
+    text-align: right;
+}
+</style>

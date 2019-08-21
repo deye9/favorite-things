@@ -13,24 +13,24 @@
           </tr>
           <tr>
             <th> # </th>
-            <th> Name </th>
-            <th> Created On </th>
-            <th> Updated On </th>
-            <th> Action </th>
+            <th nowrap> Name </th>
+            <th nowrap> Created On </th>
+            <th nowrap> Updated On </th>
+            <th nowrap> Action </th>
           </tr>
         </thead>
         <tbody>
-          <tr :id="'row' + row.id" v-for="row in this.categories" v-bind:key="row.id">
-            <td>{{row.id}}</td>
+          <tr :id="'row' + row.id" v-for="(row, index) in this.categories" v-bind:key="row.id">
+            <td>{{++index}}</td>
             <td>{{row.name}}</td>
             <td>{{row.created_date}}</td>
             <td>{{row.modified_date}}</td>
-            <td>
+            <td nowrap>
               <a :href="'/category/edit/' + row.id">
                 <button type="button" class="btn btn-primary">Edit</button>
               </a>
               <button type="button" class="btn btn-danger" @click="deleteCategory(row.id)">Delete</button>
-              <a :href="'/logs/' + row.id">
+              <a :href="'/logs?event=Category&record_id=' + row.id">
                 <button type="button" class="btn btn-info">View Log</button>
               </a>
             </td>

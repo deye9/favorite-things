@@ -28,7 +28,7 @@ export default new Router({
     name: 'EditItems',
     component: EditItems
   }, {
-    path: '/logs/:id',
+    path: '/logs',
     name: 'Logs',
     component: Logs
   }, {

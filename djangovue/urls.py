@@ -12,5 +12,4 @@ urlpatterns = [
     path('api/items/<int:pk>', views.TrackerView.as_view()),
 
     path('api/logs', views.AuditLogView.as_view()),
-    path('api/logs/<int:pk>', views.AuditLogView.as_view()),
 ]

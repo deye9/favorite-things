@@ -13,19 +13,19 @@
           </tr>
           <tr>
             <th> # </th>
-            <th> Title </th>
-            <th> Description </th>
-            <th> Ranking </th>
-            <th> Metadata </th>
-            <th> Category </th>
-            <th> Created On </th>
-            <th> Updated On </th>
-            <th> Action </th>
+            <th nowrap> Title </th>
+            <th nowrap> Description </th>
+            <th nowrap> Ranking </th>
+            <th nowrap> Metadata </th>
+            <th nowrap> Category </th>
+            <th nowrap> Created On </th>
+            <th nowrap> Updated On </th>
+            <th nowrap> Action </th>
           </tr>
         </thead>
         <tbody>
-          <tr :id="'row' + row.id" v-for="row in this.items" v-bind:key="row.id">
-            <td>{{row.id}}</td>
+          <tr :id="'row' + row.id" v-for="(row, index) in this.items" v-bind:key="row.id">
+            <td>{{++index}}</td>
             <td>{{row.title}}</td>
             <td>{{row.description}}</td>
             <td>{{row.ranking}}</td>
@@ -33,12 +33,12 @@
             <td>{{CategoryText(row.category)}}</td>
             <td>{{row.created_date}}</td>
             <td>{{row.modified_date}}</td>
-            <td>
+            <td nowrap>
               <a :href="'/items/edit/' + row.id">
                 <button type="button" class="btn btn-primary">Edit</button>
               </a>
               <button type="button" class="btn btn-danger" @click="deleteItem(row.id)">Delete</button>
-              <a :href="'/logs/' + row.id">
+              <a :href="'/logs?event=Tracker&record_id=' + row.id">
                 <button type="button" class="btn btn-info">View Log</button>
               </a>
             </td>
