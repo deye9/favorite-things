@@ -28,9 +28,9 @@ environ.Env.read_env()  # reading .env file
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['britecore-favouritethings.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['britecore-favouritethings.herokuapp.com/', '*']
 
 # Application definition
 
@@ -134,7 +134,9 @@ STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
-    'http://127.0.0.1:8080'
+    'http://127.0.0.1:8080',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000'
 )
 
 STATICFILES_DIRS = [
@@ -143,6 +145,5 @@ STATICFILES_DIRS = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
