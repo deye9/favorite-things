@@ -6,9 +6,7 @@
         <thead>
           <tr class="captionRow">
             <th colspan="5">
-              <a href="/category/add">
-                <button type="button" class="btn btn-primary">New Category</button>
-              </a>
+              <router-link class="btn btn-primary" to="/category/add">New Category</router-link>
             </th>
           </tr>
           <tr>
@@ -26,13 +24,9 @@
             <td>{{row.created_date}}</td>
             <td>{{row.modified_date}}</td>
             <td nowrap>
-              <a :href="'/category/edit/' + row.id">
-                <button type="button" class="btn btn-primary">Edit</button>
-              </a>
+              <router-link class="btn btn-primary" v-bind:to="'/category/edit/' + row.id">Edit</router-link>
               <button type="button" class="btn btn-danger" @click="deleteCategory(row.id)">Delete</button>
-              <a :href="'/logs?event=Category&record_id=' + row.id">
-                <button type="button" class="btn btn-info">View Log</button>
-              </a>
+              <router-link class="btn btn-info" v-bind:to="'/logs?event=Category&record_id=' + row.id">View Log</router-link>
             </td>
           </tr>
         </tbody>

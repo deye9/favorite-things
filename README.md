@@ -38,18 +38,17 @@ To view all available Django Routes run the command below
 3. Global search functionality was not implemented
 4. Swagger documentation was not implemented
 5. Log filtering by date was not implemented.
+6. Was unable to implement the ranking Stored Procedure / Query as i was nearly out of time.
 
 ### API List
 
 | Route                                     |  Handler                                 |
 | :---                                      | :---                                     |
-| `/admin/`                                 | GET                                      |
 | `/api/categories`                         | backend.views.CategoryView               |
 | `/api/categories/<int:pk>`                | backend.views.CategoryView               |
 | `/api/items`                              | backend.views.TrackerView                |
 | `/api/items/<int:pk>`                     | backend.views.TrackerView                |
 | `/api/logs`                               | backend.views.AuditLogView               |
-| `/api/logs/<int:pk>`                      | backend.views.AuditLogView               |
 | `/api/metadata`                           | backend.views.MetadataView               |
 | `/api/metadata/<int:pk>`                  | backend.views.MetadataView               |
 

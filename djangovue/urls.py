@@ -1,5 +1,7 @@
 from django.urls import path
+from django.views.generic import TemplateView
 from backend import views
+from django.conf.urls import url
 
 urlpatterns = [
     path('api/categories', views.CategoryView.as_view()),
@@ -12,4 +14,6 @@ urlpatterns = [
     path('api/items/<int:pk>', views.TrackerView.as_view()),
 
     path('api/logs', views.AuditLogView.as_view()),
+
+    url(r'^$', TemplateView.as_view(template_name='index.html')),
 ]

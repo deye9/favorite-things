@@ -6,9 +6,7 @@
         <thead>
           <tr class="captionRow">
             <th colspan="6">
-              <a href="/metadata/add">
-                <button type="button" class="btn btn-primary">New Metadata</button>
-              </a>
+              <router-link class="btn btn-primary" to="/metadata/add">New Metadata</router-link>
             </th>
           </tr>
           <tr>
@@ -28,13 +26,9 @@
             <td>{{row.created_date}}</td>
             <td>{{row.modified_date}}</td>
             <td nowrap>
-              <a :href="'/metadata/edit/' + row.id">
-                <button type="button" class="btn btn-primary">Edit</button>
-              </a>
+              <router-link class="btn btn-primary" v-bind:to="'/metadata/edit/' + row.id">Edit</router-link>
               <button type="button" class="btn btn-danger" @click="deleteMetadata(row.id)">Delete</button>
-              <a :href="'/logs?event=Metadata&record_id=' + row.id">
-                <button type="button" class="btn btn-info">View Log</button>
-              </a>
+              <router-link class="btn btn-info" v-bind:to="'/logs?event=Metadata&record_id=' + row.id">View Log</router-link>
             </td>
           </tr>
         </tbody>
