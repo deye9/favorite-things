@@ -11,11 +11,10 @@ To run the tests associated with this project, kindly use the commands as listed
 3. `python manage.py migrate`
 4. `./manage.py loaddata category.json`
 
-To get started frontend wise run the commands as listed in the sequence below:
+To get started frontend wise run the commands as listed in the sequence below in the root folder:
 
-1. `cd frontend`
-2. `npm install`
-3. `npm run dev`
+1. `npm install`
+2. `npm run dev`
 
 To run test scripts the command needed is
 
