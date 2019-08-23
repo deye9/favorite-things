@@ -52,3 +52,4 @@ To view all available Django Routes run the command below
 | `/api/metadata/<int:pk>`                  | backend.views.MetadataView               |
 
 ### Database Diagram
+![Database Diagram](/ERD.pdf)
